@@ -1,0 +1,776 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>GS AI Studio</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css">
+
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- =====================================
+         SIDEBAR
+    ====================================== -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+            <div class="logo-mark">GS</div>
+
+            <div class="logo-text">
+                <strong>GS AI</strong>
+                <span>STUDIO</span>
+            </div>
+        </div>
+
+
+        <button
+            type="button"
+            class="new-project">
+            + New Project
+        </button>
+
+
+        <nav>
+
+            <a href="#" class="active">
+                <span>⌂</span>
+                Home
+            </a>
+
+            <a href="#">
+                <span>✦</span>
+                Text to Video
+            </a>
+
+            <a href="#">
+                <span>▣</span>
+                Image to Video
+            </a>
+
+            <a href="#">
+                <span>▶</span>
+                Video to Video
+            </a>
+
+            <a href="#">
+                <span>◉</span>
+                Character Replace
+            </a>
+
+            <a href="#">
+                <span>◇</span>
+                AI Image
+            </a>
+
+            <a href="#">
+                <span>♫</span>
+                AI Voice
+            </a>
+
+            <a href="#">
+                <span>CC</span>
+                Auto Caption
+            </a>
+
+        </nav>
+
+
+        <div class="sidebar-bottom">
+
+            <div class="credits">
+                <span>Credits</span>
+                <strong class="credits-count">100</strong>
+            </div>
+
+            <button
+                type="button"
+                class="help-btn">
+                ? Help
+            </button>
+
+            <button
+                type="button"
+                class="settings-btn">
+                ⚙ Settings
+            </button>
+
+        </div>
+
+    </aside>
+
+
+    <!-- =====================================
+         MAIN
+    ====================================== -->
+
+    <main class="main">
+
+
+        <!-- =================================
+             HOME
+        ================================== -->
+
+        <section
+            id="homeSection"
+            class="page">
+
+            <header class="topbar">
+
+                <div>
+                    <h1>GS AI Studio</h1>
+                    <p>
+                        Create videos with AI
+                    </p>
+                </div>
+
+                <div class="topbar-actions">
+
+                    <span class="credit-pill">
+                        ✦
+                        <span class="credits-count">
+                            100
+                        </span>
+                        Credits
+                    </span>
+
+                </div>
+
+            </header>
+
+
+            <div class="hero">
+
+                <div class="hero-badge">
+                    ✦ AI VIDEO STUDIO
+                </div>
+
+                <h2>
+                    Turn your ideas into
+                    <span>amazing videos.</span>
+                </h2>
+
+                <p>
+                    Create cinematic videos, animate
+                    images, replace characters and
+                    more with GS AI.
+                </p>
+
+                <button
+                    type="button"
+                    class="start-btn">
+                    ✦ Start Creating
+                </button>
+
+            </div>
+
+
+            <div class="tools-heading">
+
+                <div>
+                    <h2>AI Tools</h2>
+                    <p>
+                        Choose a tool to start your creation.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="tool-grid">
+
+                <button
+                    type="button"
+                    class="tool-card start-btn">
+
+                    <div class="tool-icon">
+                        ✦
+                    </div>
+
+                    <h3>Text to Video</h3>
+
+                    <p>
+                        Turn your text prompt
+                        into a video.
+                    </p>
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="tool-card start-btn">
+
+                    <div class="tool-icon">
+                        ▣
+                    </div>
+
+                    <h3>Image to Video</h3>
+
+                    <p>
+                        Animate your images
+                        with AI.
+                    </p>
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="tool-card start-btn">
+
+                    <div class="tool-icon">
+                        ▶
+                    </div>
+
+                    <h3>Video to Video</h3>
+
+                    <p>
+                        Transform your existing
+                        videos.
+                    </p>
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="tool-card start-btn">
+
+                    <div class="tool-icon">
+                        ◉
+                    </div>
+
+                    <h3>Character Replace</h3>
+
+                    <p>
+                        Replace characters
+                        using AI.
+                    </p>
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="tool-card start-btn">
+
+                    <div class="tool-icon">
+                        ◇
+                    </div>
+
+                    <h3>AI Image</h3>
+
+                    <p>
+                        Generate beautiful
+                        AI images.
+                    </p>
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="tool-card start-btn">
+
+                    <div class="tool-icon">
+                        ♫
+                    </div>
+
+                    <h3>AI Voice</h3>
+
+                    <p>
+                        Generate natural
+                        AI voices.
+                    </p>
+
+                </button>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================
+             CREATOR
+        ================================== -->
+
+        <section
+            id="creator"
+            class="page hidden">
+
+            <header class="creator-header">
+
+                <button
+                    type="button"
+                    class="back-btn">
+                    ←
+                </button>
+
+                <div>
+
+                    <span>
+                        AI CREATOR
+                    </span>
+
+                    <h1 id="toolName">
+                        Text to Video
+                    </h1>
+
+                </div>
+
+            </header>
+
+
+            <div class="creator-content">
+
+
+                <!-- PROMPT -->
+
+                <div class="creator-card">
+
+                    <label for="prompt">
+                        Describe your creation
+                    </label>
+
+                    <textarea
+                        id="prompt"
+                        maxlength="1000"
+                        placeholder="Describe the video you want to create..."></textarea>
+
+                    <div class="prompt-bottom">
+
+                        <span>
+                            Be detailed for better results
+                        </span>
+
+                        <span id="promptCounter">
+                            0/1000
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- UPLOAD -->
+
+                <div class="creator-card">
+
+                    <label>
+                        Reference Media
+                    </label>
+
+                    <div class="upload-area">
+
+                        <div class="upload-icon">
+                            ↑
+                        </div>
+
+                        <h3>
+                            Upload Reference
+                        </h3>
+
+                        <p>
+                            Drop an image or video here
+                        </p>
+
+                        <span>
+                            PNG, JPG, WEBP, MP4, MOV
+                        </span>
+
+                        <input
+                            type="file"
+                            id="fileInput"
+                            accept="image/*,video/*"
+                            hidden>
+
+                    </div>
+
+                </div>
+
+
+                <!-- OPTIONS -->
+
+                <div class="options-grid">
+
+                    <div class="creator-card">
+
+                        <label for="duration">
+                            Duration
+                        </label>
+
+                        <select id="duration">
+
+                            <option value="5">
+                                5 seconds
+                            </option>
+
+                            <option value="10">
+                                10 seconds
+                            </option>
+
+                            <option value="15">
+                                15 seconds
+                            </option>
+
+                            <option value="20">
+                                20 seconds
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="creator-card">
+
+                        <label for="aspectRatio">
+                            Aspect Ratio
+                        </label>
+
+                        <select id="aspectRatio">
+
+                            <option value="16:9">
+                                16:9 Landscape
+                            </option>
+
+                            <option value="9:16">
+                                9:16 Portrait
+                            </option>
+
+                            <option value="1:1">
+                                1:1 Square
+                            </option>
+
+                            <option value="4:5">
+                                4:5 Portrait
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <!-- GENERATE -->
+
+                <button
+                    type="button"
+                    class="generate-btn">
+
+                    ✦ Generate
+
+                </button>
+
+
+                <!-- RESULT -->
+
+                <div
+                    id="result"
+                    class="result hidden">
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================
+             EDITOR
+        ================================== -->
+
+        <section
+            id="editor"
+            class="page hidden">
+
+
+            <header class="editor-header">
+
+                <button
+                    type="button"
+                    class="back-editor-btn">
+                    ← Back
+                </button>
+
+                <div>
+
+                    <span>
+                        VIDEO EDITOR
+                    </span>
+
+                    <h1>
+                        Edit your video
+                    </h1>
+
+                </div>
+
+                <button
+                    type="button"
+                    class="export-btn">
+                    ↓ Export
+                </button>
+
+            </header>
+
+
+            <div class="editor-layout">
+
+
+                <!-- VIDEO -->
+
+                <div class="video-workspace">
+
+                    <div class="video-preview">
+
+                        <video
+                            id="editorVideo"
+                            controls
+                            playsinline>
+                        </video>
+
+                        <div
+                            class="empty-video">
+                            <div>▶</div>
+                            <p>
+                                Upload a video to start editing
+                            </p>
+                        </div>
+
+                    </div>
+
+
+                    <!-- CONTROLS -->
+
+                    <div class="video-controls">
+
+                        <span id="currentTime">
+                            0:00
+                        </span>
+
+                        <input
+                            type="range"
+                            id="timelineSlider"
+                            min="0"
+                            max="100"
+                            value="0">
+
+                        <span id="totalTime">
+                            0:00
+                        </span>
+
+                    </div>
+
+
+                    <!-- TIMELINE -->
+
+                    <div class="timeline">
+
+                        <div class="timeline-label">
+                            Timeline
+                        </div>
+
+                        <div class="timeline-track">
+
+                            <div class="timeline-clip">
+                                GS AI Video
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- TOOLS -->
+
+                <aside class="editor-panel">
+
+                    <h2>
+                        Editing Tools
+                    </h2>
+
+
+                    <div class="editor-tools">
+
+                        <button
+                            type="button">
+                            ✂
+                            <span>Trim</span>
+                        </button>
+
+                        <button
+                            type="button">
+                            ⚡
+                            <span>Speed</span>
+                        </button>
+
+                        <button
+                            type="button">
+                            🔊
+                            <span>Volume</span>
+                        </button>
+
+                        <button
+                            type="button">
+                            T
+                            <span>Text</span>
+                        </button>
+
+                        <button
+                            type="button">
+                            ◐
+                            <span>Filter</span>
+                        </button>
+
+                        <button
+                            type="button">
+                            ✨
+                            <span>Effects</span>
+                        </button>
+
+                        <button
+                            type="button">
+                            ♫
+                            <span>Music</span>
+                        </button>
+
+                        <button
+                            type="button">
+                            □
+                            <span>Crop</span>
+                        </button>
+
+                    </div>
+
+
+                    <!-- TRIM -->
+
+                    <div class="trim-panel">
+
+                        <h3>
+                            Trim Video
+                        </h3>
+
+                        <div class="trim-fields">
+
+                            <label>
+                                Start
+
+                                <input
+                                    type="number"
+                                    id="trimStart"
+                                    value="0"
+                                    min="0"
+                                    step="0.1">
+
+                            </label>
+
+
+                            <label>
+                                End
+
+                                <input
+                                    type="number"
+                                    id="trimEnd"
+                                    value="5"
+                                    min="0"
+                                    step="0.1">
+
+                            </label>
+
+                        </div>
+
+                        <button
+                            type="button"
+                            class="trim-apply-btn">
+                            Apply Trim
+                        </button>
+
+                    </div>
+
+                </aside>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+    <!-- =====================================
+         MOBILE NAVIGATION
+    ====================================== -->
+
+    <nav class="mobile-nav">
+
+        <button
+            type="button"
+            class="active">
+
+            <span>⌂</span>
+            Home
+
+        </button>
+
+        <button
+            type="button">
+
+            <span>✦</span>
+            Create
+
+        </button>
+
+        <button
+            type="button">
+
+            <span>▶</span>
+            Edit
+
+        </button>
+
+        <button
+            type="button">
+
+            <span>⚙</span>
+            Settings
+
+        </button>
+
+    </nav>
+
+
+</div>
+
+
+<!-- =====================================
+     SCRIPT
+====================================== -->
+
+<script
+    src="script.js">
+</script>
+
+</body>
+
+</html>
+```
