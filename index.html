@@ -6,21 +6,21 @@
 
     <meta charset="UTF-8">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
     <title>GS AI Studio</title>
 
-    <link
-        rel="stylesheet"
-        href="style.css">
+    <link rel="stylesheet"
+          href="style.css">
 
 </head>
+
 
 <body>
 
 <div class="app">
+
 
     <!-- =====================================
          SIDEBAR
@@ -29,89 +29,115 @@
     <aside class="sidebar">
 
         <div class="logo">
-            <div class="logo-mark">GS</div>
 
-            <div class="logo-text">
-                <strong>GS AI</strong>
-                <span>STUDIO</span>
+            <div class="logo-icon">
+                GS
             </div>
+
+            <div>
+                <h2>GS AI Studio</h2>
+                <span>AI Creation Platform</span>
+            </div>
+
         </div>
 
 
-        <button
-            type="button"
-            class="new-project">
-            + New Project
-        </button>
+        <nav class="sidebar-nav">
+
+            <button
+                type="button"
+                data-page="home"
+                class="active">
+
+                ⌂
+                <span>Home</span>
+
+            </button>
 
 
-        <nav>
+            <button
+                type="button"
+                data-page="models">
 
-            <a href="#" class="active">
-                <span>⌂</span>
-                Home
-            </a>
+                🤖
+                <span>AI Models</span>
 
-            <a href="#">
-                <span>✦</span>
-                Text to Video
-            </a>
+            </button>
 
-            <a href="#">
-                <span>▣</span>
-                Image to Video
-            </a>
 
-            <a href="#">
-                <span>▶</span>
-                Video to Video
-            </a>
+            <button
+                type="button"
+                data-page="image">
 
-            <a href="#">
-                <span>◉</span>
-                Character Replace
-            </a>
+                🎨
+                <span>Image Generator</span>
 
-            <a href="#">
-                <span>◇</span>
-                AI Image
-            </a>
+            </button>
 
-            <a href="#">
-                <span>♫</span>
-                AI Voice
-            </a>
 
-            <a href="#">
-                <span>CC</span>
-                Auto Caption
-            </a>
+            <button
+                type="button"
+                data-page="creator">
+
+                🎬
+                <span>Video Generator</span>
+
+            </button>
+
+
+            <button
+                type="button"
+                data-page="playground">
+
+                🧪
+                <span>Playground</span>
+
+            </button>
+
+
+            <button
+                type="button"
+                data-page="projects">
+
+                📁
+                <span>My Projects</span>
+
+            </button>
 
         </nav>
 
 
         <div class="sidebar-bottom">
 
-            <div class="credits">
-                <span>Credits</span>
-                <strong class="credits-count">100</strong>
+            <button
+                type="button"
+                data-page="settings">
+
+                ⚙️
+                <span>Settings</span>
+
+            </button>
+
+
+            <div class="plan-card">
+
+                <strong>FREE PLAN</strong>
+
+                <div>
+                    GS AI Studio
+                </div>
+
+                <div class="credits">
+                    Credits:
+                    <b class="credit-count">100</b>
+                </div>
+
             </div>
-
-            <button
-                type="button"
-                class="help-btn">
-                ? Help
-            </button>
-
-            <button
-                type="button"
-                class="settings-btn">
-                ⚙ Settings
-            </button>
 
         </div>
 
     </aside>
+
 
 
     <!-- =====================================
@@ -122,183 +148,239 @@
 
 
         <!-- =================================
+             TOP BAR
+        ================================== -->
+
+        <header class="topbar">
+
+            <button
+                type="button"
+                class="menu-btn">
+
+                ☰
+
+            </button>
+
+
+            <div class="top-search">
+
+                🔍
+
+                <input
+                    type="text"
+                    placeholder="Search">
+
+            </div>
+
+
+            <div class="top-actions">
+
+                <button
+                    type="button">
+
+                    🔔
+
+                </button>
+
+
+                <div class="profile">
+                    G
+                </div>
+
+            </div>
+
+        </header>
+
+
+
+        <!-- =================================
              HOME
         ================================== -->
 
         <section
-            id="homeSection"
+            id="home"
             class="page">
-
-            <header class="topbar">
-
-                <div>
-                    <h1>GS AI Studio</h1>
-                    <p>
-                        Create videos with AI
-                    </p>
-                </div>
-
-                <div class="topbar-actions">
-
-                    <span class="credit-pill">
-                        ✦
-                        <span class="credits-count">
-                            100
-                        </span>
-                        Credits
-                    </span>
-
-                </div>
-
-            </header>
 
 
             <div class="hero">
 
-                <div class="hero-badge">
-                    ✦ AI VIDEO STUDIO
+                <div class="hero-content">
+
+                    <span class="eyebrow">
+                        ✨ AI CREATION PLATFORM
+                    </span>
+
+
+                    <h1>
+                        Create Anything
+                        <span>With AI</span>
+                    </h1>
+
+
+                    <p>
+                        Generate images, videos and creative
+                        content using powerful AI models in
+                        one place.
+                    </p>
+
+
+                    <div class="hero-buttons">
+
+                        <button
+                            type="button"
+                            class="start-btn">
+
+                            🎨 Create Image
+
+                        </button>
+
+
+                        <button
+                            type="button"
+                            class="start-btn"
+                            onclick="showPage('creator')">
+
+                            🎬 Create Video
+
+                        </button>
+
+                    </div>
+
                 </div>
 
-                <h2>
-                    Turn your ideas into
-                    <span>amazing videos.</span>
-                </h2>
 
-                <p>
-                    Create cinematic videos, animate
-                    images, replace characters and
-                    more with GS AI.
-                </p>
+                <div class="hero-card">
 
-                <button
-                    type="button"
-                    class="start-btn">
-                    ✦ Start Creating
-                </button>
+                    <div class="engine-logo">
+                        GS
+                    </div>
+
+                    <h3>
+                        GS AI Engine
+                    </h3>
+
+                    <p>
+                        Your creative AI workspace
+                    </p>
+
+                    <span class="status">
+                        Ready
+                    </span>
+
+                </div>
 
             </div>
 
 
-            <div class="tools-heading">
 
-                <div>
-                    <h2>AI Tools</h2>
-                    <p>
-                        Choose a tool to start your creation.
-                    </p>
-                </div>
+            <div class="section-title">
+
+                <span>
+                    Explore AI Tools
+                </span>
+
+                <small>
+                    Start creating
+                </small>
 
             </div>
 
 
-            <div class="tool-grid">
+            <div class="tools-grid">
 
-                <button
-                    type="button"
-                    class="tool-card start-btn">
+
+                <div
+                    class="tool-card"
+                    data-tool="Text to Image">
 
                     <div class="tool-icon">
-                        ✦
+                        🎨
                     </div>
 
-                    <h3>Text to Video</h3>
+                    <h3>
+                        Text to Image
+                    </h3>
 
                     <p>
-                        Turn your text prompt
-                        into a video.
+                        Create stunning images from text
+                        prompts.
                     </p>
 
-                </button>
+                    <span>
+                        Open →
+                    </span>
+
+                </div>
 
 
-                <button
-                    type="button"
-                    class="tool-card start-btn">
-
-                    <div class="tool-icon">
-                        ▣
-                    </div>
-
-                    <h3>Image to Video</h3>
-
-                    <p>
-                        Animate your images
-                        with AI.
-                    </p>
-
-                </button>
-
-
-                <button
-                    type="button"
-                    class="tool-card start-btn">
+                <div
+                    class="tool-card"
+                    data-tool="Text to Video">
 
                     <div class="tool-icon">
-                        ▶
+                        🎬
                     </div>
 
-                    <h3>Video to Video</h3>
+                    <h3>
+                        Text to Video
+                    </h3>
 
                     <p>
-                        Transform your existing
+                        Turn your ideas into cinematic
                         videos.
                     </p>
 
-                </button>
+                    <span>
+                        Open →
+                    </span>
+
+                </div>
 
 
-                <button
-                    type="button"
-                    class="tool-card start-btn">
-
-                    <div class="tool-icon">
-                        ◉
-                    </div>
-
-                    <h3>Character Replace</h3>
-
-                    <p>
-                        Replace characters
-                        using AI.
-                    </p>
-
-                </button>
-
-
-                <button
-                    type="button"
-                    class="tool-card start-btn">
+                <div
+                    class="tool-card"
+                    data-tool="AI Playground">
 
                     <div class="tool-icon">
-                        ◇
+                        🧪
                     </div>
 
-                    <h3>AI Image</h3>
+                    <h3>
+                        AI Playground
+                    </h3>
 
                     <p>
-                        Generate beautiful
-                        AI images.
+                        Experiment with different AI models.
                     </p>
 
-                </button>
+                    <span>
+                        Open →
+                    </span>
+
+                </div>
 
 
-                <button
-                    type="button"
-                    class="tool-card start-btn">
+                <div
+                    class="tool-card"
+                    data-tool="Model Hub">
 
                     <div class="tool-icon">
-                        ♫
+                        🤖
                     </div>
 
-                    <h3>AI Voice</h3>
+                    <h3>
+                        Model Hub
+                    </h3>
 
                     <p>
-                        Generate natural
-                        AI voices.
+                        Explore and manage your AI models.
                     </p>
 
-                </button>
+                    <span>
+                        Open →
+                    </span>
+
+                </div>
 
             </div>
 
@@ -307,184 +389,466 @@
 
 
         <!-- =================================
-             CREATOR
+             MODELS
+        ================================== -->
+
+        <section
+            id="models"
+            class="page hidden">
+
+
+            <div class="page-header">
+
+                <span>
+                    MODEL HUB
+                </span>
+
+                <h1>
+                    AI Models
+                </h1>
+
+                <p>
+                    Explore models available inside
+                    GS AI Studio.
+                </p>
+
+            </div>
+
+
+            <div class="model-grid">
+
+
+                <div class="model-card">
+
+                    <div class="model-icon">
+                        🎨
+                    </div>
+
+                    <span class="ready">
+                        Ready
+                    </span>
+
+                    <h3>
+                        GS Image Model
+                    </h3>
+
+                    <p>
+                        Text-to-image generation model.
+                    </p>
+
+                    <small>
+                        Image Generation
+                    </small>
+
+                    <button
+                        type="button"
+                        onclick="showPage('image')">
+
+                        Use Model
+
+                    </button>
+
+                </div>
+
+
+                <div class="model-card">
+
+                    <div class="model-icon">
+                        🎬
+                    </div>
+
+                    <span class="ready">
+                        Ready
+                    </span>
+
+                    <h3>
+                        GS Video Model
+                    </h3>
+
+                    <p>
+                        AI video generation workspace.
+                    </p>
+
+                    <small>
+                        Video Generation
+                    </small>
+
+                    <button
+                        type="button"
+                        onclick="showPage('creator')">
+
+                        Use Model
+
+                    </button>
+
+                </div>
+
+
+                <div class="model-card">
+
+                    <div class="model-icon">
+                        🪄
+                    </div>
+
+                    <span class="ready">
+                        Ready
+                    </span>
+
+                    <h3>
+                        GS Image Enhance
+                    </h3>
+
+                    <p>
+                        Enhance and upscale generated images.
+                    </p>
+
+                    <small>
+                        Upscale Enhance
+                    </small>
+
+                    <button
+                        type="button">
+
+                        Use Model
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================
+             IMAGE GENERATOR
+        ================================== -->
+
+        <section
+            id="image"
+            class="page hidden">
+
+
+            <div class="page-header">
+
+                <span>
+                    IMAGE AI
+                </span>
+
+                <h1>
+                    Image Generator
+                </h1>
+
+                <p>
+                    Create images from your imagination.
+                </p>
+
+            </div>
+
+
+            <div class="generator-card">
+
+                <label>
+                    Describe your image
+                </label>
+
+
+                <textarea
+                    id="imagePrompt"
+                    placeholder="Describe the image you want to create..."></textarea>
+
+
+                <div class="generator-options">
+
+                    <button
+                        type="button">
+
+                        1 Image
+
+                    </button>
+
+                    <button
+                        type="button">
+
+                        2 Images
+
+                    </button>
+
+                    <button
+                        type="button">
+
+                        4 Images
+
+                    </button>
+
+                </div>
+
+
+                <div class="generator-options">
+
+                    <button
+                        type="button">
+
+                        1024 × 1024
+
+                    </button>
+
+                    <button
+                        type="button">
+
+                        1536 × 1024
+
+                    </button>
+
+                    <button
+                        type="button">
+
+                        1024 × 1536
+
+                    </button>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="image-generate-btn">
+
+                    ✨ Generate Image
+
+                </button>
+
+
+                <div class="image-placeholder">
+
+                    🎨
+
+                    <p>
+                        Your generated image will appear here.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================
+             VIDEO GENERATOR
         ================================== -->
 
         <section
             id="creator"
             class="page hidden">
 
-            <header class="creator-header">
 
-                <button
-                    type="button"
-                    class="back-btn">
-                    ←
-                </button>
+            <div class="page-header">
 
-                <div>
+                <span>
+                    VIDEO AI
+                </span>
 
-                    <span>
-                        AI CREATOR
-                    </span>
+                <h1>
+                    Video Generator
+                </h1>
 
-                    <h1 id="toolName">
-                        Text to Video
-                    </h1>
+                <p>
+                    Turn your ideas into AI videos.
+                </p>
 
-                </div>
-
-            </header>
+            </div>
 
 
-            <div class="creator-content">
+            <div class="generator-card">
 
 
                 <!-- PROMPT -->
 
-                <div class="creator-card">
+                <label
+                    for="prompt">
 
-                    <label for="prompt">
-                        Describe your creation
-                    </label>
+                    Describe your video
 
-                    <textarea
-                        id="prompt"
-                        maxlength="1000"
-                        placeholder="Describe the video you want to create..."></textarea>
+                </label>
 
-                    <div class="prompt-bottom">
 
-                        <span>
-                            Be detailed for better results
-                        </span>
+                <textarea
+                    id="prompt"
+                    name="prompt"
+                    maxlength="1000"
+                    placeholder="Describe your video..."></textarea>
 
-                        <span id="promptCounter">
-                            0/1000
-                        </span>
 
-                    </div>
+                <div
+                    id="promptCount"
+                    class="prompt-count">
+
+                    0/1000
 
                 </div>
 
 
-                <!-- UPLOAD -->
 
-                <div class="creator-card">
+                <!-- DURATION -->
 
-                    <label>
-                        Reference Media
-                    </label>
+                <label
+                    for="duration">
 
-                    <div class="upload-area">
+                    Duration
 
-                        <div class="upload-icon">
-                            ↑
-                        </div>
+                </label>
 
-                        <h3>
-                            Upload Reference
-                        </h3>
+
+                <select
+                    id="duration"
+                    name="duration">
+
+                    <option value="5">
+                        5 Seconds
+                    </option>
+
+                    <option value="10">
+                        10 Seconds
+                    </option>
+
+                </select>
+
+
+
+                <!-- ASPECT RATIO -->
+
+                <label
+                    for="aspectRatio">
+
+                    Aspect Ratio
+
+                </label>
+
+
+                <select
+                    id="aspectRatio"
+                    name="aspectRatio">
+
+                    <option value="16:9">
+                        16:9
+                    </option>
+
+                    <option value="9:16">
+                        9:16
+                    </option>
+
+                    <option value="1:1">
+                        1:1
+                    </option>
+
+                </select>
+
+
+
+                <!-- OPTIONAL UPLOAD -->
+
+                <label>
+                    Reference Image / Video
+                </label>
+
+
+                <div
+                    class="upload-area">
+
+                    <input
+                        type="file"
+                        id="fileInput"
+                        accept="image/*,video/*"
+                        hidden>
+
+
+                    <div>
+
+                        📁
 
                         <p>
-                            Drop an image or video here
+                            Click to upload
                         </p>
 
-                        <span>
-                            PNG, JPG, WEBP, MP4, MOV
-                        </span>
-
-                        <input
-                            type="file"
-                            id="fileInput"
-                            accept="image/*,video/*"
-                            hidden>
+                        <small>
+                            Image or video
+                        </small>
 
                     </div>
 
                 </div>
 
 
-                <!-- OPTIONS -->
 
-                <div class="options-grid">
-
-                    <div class="creator-card">
-
-                        <label for="duration">
-                            Duration
-                        </label>
-
-                        <select id="duration">
-
-                            <option value="5">
-                                5 seconds
-                            </option>
-
-                            <option value="10">
-                                10 seconds
-                            </option>
-
-                            <option value="15">
-                                15 seconds
-                            </option>
-
-                            <option value="20">
-                                20 seconds
-                            </option>
-
-                        </select>
-
-                    </div>
-
-
-                    <div class="creator-card">
-
-                        <label for="aspectRatio">
-                            Aspect Ratio
-                        </label>
-
-                        <select id="aspectRatio">
-
-                            <option value="16:9">
-                                16:9 Landscape
-                            </option>
-
-                            <option value="9:16">
-                                9:16 Portrait
-                            </option>
-
-                            <option value="1:1">
-                                1:1 Square
-                            </option>
-
-                            <option value="4:5">
-                                4:5 Portrait
-                            </option>
-
-                        </select>
-
-                    </div>
-
-                </div>
-
-
-                <!-- GENERATE -->
+                <!-- GENERATE BUTTON -->
 
                 <button
                     type="button"
-                    class="generate-btn">
+                    class="generate-btn"
+                    id="generateVideoBtn"
+                    onclick="generateVideo()">
 
-                    ✦ Generate
+                    🎬 Generate Video
 
                 </button>
+
+
+
+                <!-- LOADING -->
+
+                <div
+                    class="loading hidden">
+
+                    <div class="spinner"></div>
+
+                    <h3>
+                        Generating your video...
+                    </h3>
+
+                    <p>
+                        Please wait while GS AI Studio
+                        creates your video.
+                    </p>
+
+                </div>
+
 
 
                 <!-- RESULT -->
 
                 <div
-                    id="result"
                     class="result hidden">
+
+
+                    <div
+                        class="generated-box">
+
+                        <h3>
+                            🎬 Generated Video
+                        </h3>
+
+                        <p>
+                            Your generated video will
+                            appear here.
+                        </p>
+
+                    </div>
+
+
+                    <div
+                        class="generated-info">
+
+                    </div>
+
+
+                    <div
+                        class="result-actions">
+
+                    </div>
+
                 </div>
 
             </div>
@@ -494,220 +858,196 @@
 
 
         <!-- =================================
-             EDITOR
+             PLAYGROUND
         ================================== -->
 
         <section
-            id="editor"
+            id="playground"
             class="page hidden">
 
 
-            <header class="editor-header">
+            <div class="page-header">
 
-                <button
-                    type="button"
-                    class="back-editor-btn">
-                    ← Back
-                </button>
+                <span>
+                    EXPERIMENT
+                </span>
 
-                <div>
+                <h1>
+                    AI Playground
+                </h1>
 
-                    <span>
-                        VIDEO EDITOR
-                    </span>
+                <p>
+                    Experiment with prompts and AI models.
+                </p>
 
-                    <h1>
-                        Edit your video
-                    </h1>
-
-                </div>
-
-                <button
-                    type="button"
-                    class="export-btn">
-                    ↓ Export
-                </button>
-
-            </header>
+            </div>
 
 
-            <div class="editor-layout">
+            <div class="playground-card">
+
+                <h3>
+                    Models
+                </h3>
 
 
-                <!-- VIDEO -->
+                <div class="model-tabs">
 
-                <div class="video-workspace">
+                    <button type="button">
+                        🎨 Image AI
+                    </button>
 
-                    <div class="video-preview">
+                    <button type="button">
+                        🎬 Video AI
+                    </button>
 
-                        <video
-                            id="editorVideo"
-                            controls
-                            playsinline>
-                        </video>
-
-                        <div
-                            class="empty-video">
-                            <div>▶</div>
-                            <p>
-                                Upload a video to start editing
-                            </p>
-                        </div>
-
-                    </div>
-
-
-                    <!-- CONTROLS -->
-
-                    <div class="video-controls">
-
-                        <span id="currentTime">
-                            0:00
-                        </span>
-
-                        <input
-                            type="range"
-                            id="timelineSlider"
-                            min="0"
-                            max="100"
-                            value="0">
-
-                        <span id="totalTime">
-                            0:00
-                        </span>
-
-                    </div>
-
-
-                    <!-- TIMELINE -->
-
-                    <div class="timeline">
-
-                        <div class="timeline-label">
-                            Timeline
-                        </div>
-
-                        <div class="timeline-track">
-
-                            <div class="timeline-clip">
-                                GS AI Video
-                            </div>
-
-                        </div>
-
-                    </div>
+                    <button type="button">
+                        🪄 Enhance AI
+                    </button>
 
                 </div>
 
 
-                <!-- TOOLS -->
-
-                <aside class="editor-panel">
-
-                    <h2>
-                        Editing Tools
-                    </h2>
+                <textarea
+                    placeholder="Enter your experiment prompt..."></textarea>
 
 
-                    <div class="editor-tools">
+                <button
+                    type="button">
 
-                        <button
-                            type="button">
-                            ✂
-                            <span>Trim</span>
-                        </button>
+                    ✨ Run Model
 
-                        <button
-                            type="button">
-                            ⚡
-                            <span>Speed</span>
-                        </button>
+                </button>
 
-                        <button
-                            type="button">
-                            🔊
-                            <span>Volume</span>
-                        </button>
+            </div>
 
-                        <button
-                            type="button">
-                            T
-                            <span>Text</span>
-                        </button>
-
-                        <button
-                            type="button">
-                            ◐
-                            <span>Filter</span>
-                        </button>
-
-                        <button
-                            type="button">
-                            ✨
-                            <span>Effects</span>
-                        </button>
-
-                        <button
-                            type="button">
-                            ♫
-                            <span>Music</span>
-                        </button>
-
-                        <button
-                            type="button">
-                            □
-                            <span>Crop</span>
-                        </button>
-
-                    </div>
+        </section>
 
 
-                    <!-- TRIM -->
 
-                    <div class="trim-panel">
+        <!-- =================================
+             PROJECTS
+        ================================== -->
+
+        <section
+            id="projects"
+            class="page hidden">
+
+
+            <div class="page-header">
+
+                <span>
+                    WORKSPACE
+                </span>
+
+                <h1>
+                    My Projects
+                </h1>
+
+                <p>
+                    Your generated content will appear here.
+                </p>
+
+            </div>
+
+
+            <div class="empty-projects">
+
+                📁
+
+                <h3>
+                    No projects yet
+                </h3>
+
+                <p>
+                    Start creating something amazing.
+                </p>
+
+
+                <button
+                    type="button"
+                    onclick="showPage('creator')">
+
+                    Create Project
+
+                </button>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================
+             SETTINGS
+        ================================== -->
+
+        <section
+            id="settings"
+            class="page hidden">
+
+
+            <div class="page-header">
+
+                <span>
+                    SETTINGS
+                </span>
+
+                <h1>
+                    Settings
+                </h1>
+
+                <p>
+                    Manage your GS AI Studio workspace.
+                </p>
+
+            </div>
+
+
+            <div class="settings-card">
+
+
+                <div class="setting-row">
+
+                    <div>
 
                         <h3>
-                            Trim Video
+                            Dark Mode
                         </h3>
 
-                        <div class="trim-fields">
-
-                            <label>
-                                Start
-
-                                <input
-                                    type="number"
-                                    id="trimStart"
-                                    value="0"
-                                    min="0"
-                                    step="0.1">
-
-                            </label>
-
-
-                            <label>
-                                End
-
-                                <input
-                                    type="number"
-                                    id="trimEnd"
-                                    value="5"
-                                    min="0"
-                                    step="0.1">
-
-                            </label>
-
-                        </div>
-
-                        <button
-                            type="button"
-                            class="trim-apply-btn">
-                            Apply Trim
-                        </button>
+                        <p>
+                            Use the dark interface.
+                        </p>
 
                     </div>
 
-                </aside>
+
+                    <input
+                        type="checkbox"
+                        checked>
+
+                </div>
+
+
+                <div class="setting-row">
+
+                    <div>
+
+                        <h3>
+                            Generation Notifications
+                        </h3>
+
+                        <p>
+                            Notify when generation is completed.
+                        </p>
+
+                    </div>
+
+
+                    <input
+                        type="checkbox"
+                        checked>
+
+                </div>
 
             </div>
 
@@ -716,59 +1056,123 @@
 
     </main>
 
+</div>
 
-    <!-- =====================================
-         MOBILE NAVIGATION
-    ====================================== -->
 
-    <nav class="mobile-nav">
+
+<!-- =====================================
+     VIDEO PREVIEW MODAL
+====================================== -->
+
+<div
+    id="videoPreviewModal"
+    class="video-preview-modal">
+
+
+    <div
+        class="video-preview-modal-content">
+
 
         <button
             type="button"
-            class="active">
+            class="close-preview">
 
-            <span>⌂</span>
-            Home
-
-        </button>
-
-        <button
-            type="button">
-
-            <span>✦</span>
-            Create
+            ✕
 
         </button>
 
-        <button
-            type="button">
 
-            <span>▶</span>
-            Edit
+        <h3>
+            GS AI Video Preview
+        </h3>
 
-        </button>
 
-        <button
-            type="button">
+        <div class="modal-video-container">
 
-            <span>⚙</span>
-            Settings
+        </div>
 
-        </button>
-
-    </nav>
-
+    </div>
 
 </div>
 
 
+
 <!-- =====================================
-     SCRIPT
+     MOBILE NAV
 ====================================== -->
 
-<script
-    src="script.js">
-</script>
+<nav class="mobile-nav">
+
+    <button
+        type="button"
+        data-page="home">
+
+        ⌂
+
+        <span>
+            Home
+        </span>
+
+    </button>
+
+
+    <button
+        type="button"
+        data-page="models">
+
+        🤖
+
+        <span>
+            Models
+        </span>
+
+    </button>
+
+
+    <button
+        type="button"
+        data-page="creator">
+
+        🎬
+
+        <span>
+            Video
+        </span>
+
+    </button>
+
+
+    <button
+        type="button"
+        data-page="projects">
+
+        📁
+
+        <span>
+            Projects
+        </span>
+
+    </button>
+
+
+    <button
+        type="button"
+        data-page="settings">
+
+        ⚙️
+
+        <span>
+            Settings
+        </span>
+
+    </button>
+
+</nav>
+
+
+
+<script src="script.js"></script>
+
 
 </body>
 
