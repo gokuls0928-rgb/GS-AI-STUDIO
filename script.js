@@ -3,7 +3,14 @@
    MAIN SCRIPT
 ========================================= */
 
-const API_URL = "/api";
+
+/* =========================================
+   BACKEND URL
+========================================= */
+
+const API_URL =
+    "https://gs-ai-studio-backend.onrender.com";
+
 
 let credits = 100;
 let uploadedFile = null;
@@ -13,38 +20,44 @@ let uploadedFile = null;
    DOM READY
 ========================================= */
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener(
+    "DOMContentLoaded",
+    () => {
 
-    console.log(
-        "%c GS AI STUDIO 🚀 ",
-        "background:#8b5cf6;color:white;padding:8px;border-radius:6px;font-weight:bold;"
-    );
+        console.log(
+            "%c GS AI STUDIO 🚀 ",
+            "background:#8b5cf6;color:white;padding:8px;border-radius:6px;font-weight:bold;"
+        );
 
-    console.log("GS AI Studio loaded 🚀");
+        console.log(
+            "GS AI Studio loaded 🚀"
+        );
 
-    updateCredits();
 
-    setupNavigation();
+        updateCredits();
 
-    setupMobileNavigation();
+        setupNavigation();
 
-    setupStartButton();
+        setupMobileNavigation();
 
-    setupBackButtons();
+        setupStartButton();
 
-    setupPromptCounter();
+        setupBackButtons();
 
-    setupUpload();
+        setupPromptCounter();
 
-    setupGenerateButton();
+        setupUpload();
 
-    setupEditorButtons();
+        setupGenerateButton();
 
-    setupModal();
+        setupEditorButtons();
 
-    checkBackend();
+        setupModal();
 
-});
+        checkBackend();
+
+    }
+);
 
 
 /* =========================================
@@ -57,7 +70,8 @@ function updateCredits() {
         .querySelectorAll(".credit-count")
         .forEach(element => {
 
-            element.textContent = credits;
+            element.textContent =
+                credits;
 
         });
 
@@ -72,10 +86,25 @@ async function checkBackend() {
 
     try {
 
+        console.log(
+            "Checking backend... 🚀"
+        );
+
+
         const response =
             await fetch(
-                `${API_URL}/status`
+                `${API_URL}/api/status`,
+                {
+                    method: "GET"
+                }
             );
+
+
+        console.log(
+            "Backend status:",
+            response.status
+        );
+
 
         if (!response.ok) {
 
@@ -85,13 +114,16 @@ async function checkBackend() {
 
         }
 
+
         const data =
             await response.json();
 
+
         console.log(
-            "Backend:",
+            "Backend response:",
             data
         );
+
 
         showToast(
             "GS AI backend connected ✅"
@@ -104,6 +136,7 @@ async function checkBackend() {
             "Backend error:",
             error
         );
+
 
         showToast(
             "Backend not connected ❌"
@@ -133,6 +166,7 @@ function setupNavigation() {
                     const page =
                         button.dataset.page;
 
+
                     if (page) {
 
                         showPage(page);
@@ -150,7 +184,9 @@ function setupNavigation() {
 function showPage(pageName) {
 
     document
-        .querySelectorAll(".page")
+        .querySelectorAll(
+            ".page"
+        )
         .forEach(page => {
 
             page.classList.add(
@@ -191,8 +227,11 @@ function showPage(pageName) {
 
 
     window.scrollTo({
+
         top: 0,
+
         behavior: "smooth"
+
     });
 
 }
@@ -242,7 +281,9 @@ function setupBackButtons() {
                 "click",
                 () => {
 
-                    showPage("home");
+                    showPage(
+                        "home"
+                    );
 
                 }
             );
@@ -270,6 +311,7 @@ function setupMobileNavigation() {
 
                     const page =
                         button.dataset.page;
+
 
                     if (page) {
 
@@ -313,28 +355,36 @@ document.addEventListener(
             tool === "Text to Video"
         ) {
 
-            showPage("creator");
+            showPage(
+                "creator"
+            );
 
         }
         else if (
             tool === "Text to Image"
         ) {
 
-            showPage("image");
+            showPage(
+                "image"
+            );
 
         }
         else if (
             tool === "AI Playground"
         ) {
 
-            showPage("playground");
+            showPage(
+                "playground"
+            );
 
         }
         else if (
             tool === "Model Hub"
         ) {
 
-            showPage("models");
+            showPage(
+                "models"
+            );
 
         }
 
@@ -505,6 +555,7 @@ function handleFile(file) {
                 <video
                     src="${url}"
                     controls
+                    playsinline
                     style="max-width:100%;">
                 </video>
                 `
@@ -569,6 +620,7 @@ function removeUploadedFile(event) {
 
     event.stopPropagation();
 
+
     uploadedFile = null;
 
 
@@ -618,21 +670,18 @@ function setupGenerateButton() {
     );
 
 
-    /*
-       We use addEventListener AND
-       the HTML onclick="generateVideo()"
-       is also supported.
-
-       Prevent duplicate generation.
-    */
-
     button.addEventListener(
         "click",
-        () => {
+        event => {
+
+            event.preventDefault();
 
             console.log(
                 "GENERATE BUTTON CLICKED ✅"
             );
+
+
+            generateVideo();
 
         }
     );
@@ -689,9 +738,11 @@ async function generateVideo() {
             "ERROR: #prompt not found ❌"
         );
 
+
         showToast(
             "Prompt box not found ❌"
         );
+
 
         return;
 
@@ -726,6 +777,7 @@ async function generateVideo() {
         showToast(
             "No credits remaining ❌"
         );
+
 
         return;
 
@@ -766,16 +818,25 @@ async function generateVideo() {
     );
 
 
+    console.log(
+        "Backend URL:",
+        API_URL
+    );
+
+
     /* -----------------------------------------
        BUTTON LOADING
     ----------------------------------------- */
 
     if (button) {
 
-        button.disabled = true;
+        button.disabled =
+            true;
+
 
         button.dataset.oldText =
             button.innerHTML;
+
 
         button.innerHTML =
             "Generating... ⏳";
@@ -799,10 +860,12 @@ async function generateVideo() {
 
         const response =
             await fetch(
-                `${API_URL}/generate`,
+                `${API_URL}/api/generate`,
                 {
 
-                    method: "POST",
+                    method:
+                        "POST",
+
 
                     headers: {
 
@@ -811,18 +874,20 @@ async function generateVideo() {
 
                     },
 
-                    body: JSON.stringify({
 
-                        prompt:
-                            prompt,
+                    body:
+                        JSON.stringify({
 
-                        duration:
-                            duration,
+                            prompt:
+                                prompt,
 
-                        aspectRatio:
-                            aspectRatio
+                            duration:
+                                duration,
 
-                    })
+                            aspectRatio:
+                                aspectRatio
+
+                        })
 
                 }
             );
@@ -835,11 +900,37 @@ async function generateVideo() {
 
 
         /* -----------------------------------------
-           RESPONSE
+           RESPONSE TEXT
         ----------------------------------------- */
 
-        const data =
-            await response.json();
+        const responseText =
+            await response.text();
+
+
+        console.log(
+            "Raw backend response:",
+            responseText
+        );
+
+
+        let data;
+
+
+        try {
+
+            data =
+                JSON.parse(
+                    responseText
+                );
+
+        }
+        catch (jsonError) {
+
+            throw new Error(
+                "Backend returned an invalid response."
+            );
+
+        }
 
 
         console.log(
@@ -847,6 +938,10 @@ async function generateVideo() {
             data
         );
 
+
+        /* -----------------------------------------
+           ERROR CHECK
+        ----------------------------------------- */
 
         if (
             !response.ok ||
@@ -856,6 +951,7 @@ async function generateVideo() {
             throw new Error(
 
                 data.message ||
+                data.error ||
                 "Video generation failed."
 
             );
@@ -892,7 +988,6 @@ async function generateVideo() {
         console.log(
             "VIDEO GENERATED SUCCESSFULLY ✅"
         );
-
 
     }
     catch (error) {
@@ -955,6 +1050,7 @@ function showLoading() {
             "hidden"
         );
 
+
         loading.innerHTML = `
 
             <div class="spinner"></div>
@@ -1004,6 +1100,64 @@ function hideLoading() {
 
 
 /* =========================================
+   VIDEO URL HELPER
+========================================= */
+
+function getFullVideoURL(videoURL) {
+
+    if (!videoURL) {
+
+        return "";
+
+    }
+
+
+    /* Already complete URL */
+
+    if (
+        videoURL.startsWith(
+            "http://"
+        ) ||
+        videoURL.startsWith(
+            "https://"
+        ) ||
+        videoURL.startsWith(
+            "blob:"
+        ) ||
+        videoURL.startsWith(
+            "data:"
+        )
+    ) {
+
+        return videoURL;
+
+    }
+
+
+    /* Backend-relative URL */
+
+    if (
+        videoURL.startsWith("/")
+    ) {
+
+        return (
+            API_URL +
+            videoURL
+        );
+
+    }
+
+
+    return (
+        API_URL +
+        "/" +
+        videoURL
+    );
+
+}
+
+
+/* =========================================
    SHOW RESULT
 ========================================= */
 
@@ -1021,6 +1175,7 @@ function showResult(data) {
             ".result element not found ❌"
         );
 
+
         return;
 
     }
@@ -1031,12 +1186,18 @@ function showResult(data) {
     );
 
 
-    const videoURL =
+    let videoURL =
         data &&
         data.data &&
         data.data.videoURL
             ? data.data.videoURL
-            : "/output/output.mp4";
+            : "";
+
+
+    videoURL =
+        getFullVideoURL(
+            videoURL
+        );
 
 
     const duration =
@@ -1055,6 +1216,41 @@ function showResult(data) {
             : "16:9";
 
 
+    if (!videoURL) {
+
+        console.error(
+            "Video URL missing ❌",
+            data
+        );
+
+
+        result.innerHTML = `
+
+            <div class="generated-box">
+
+                <h3>
+                    ⚠️ Video Generated
+                </h3>
+
+                <p>
+                    Backend completed the request,
+                    but no video URL was returned.
+                </p>
+
+                <p>
+                    Check Render backend logs.
+                </p>
+
+            </div>
+
+        `;
+
+
+        return;
+
+    }
+
+
     result.innerHTML = `
 
         <div class="generated-box">
@@ -1069,7 +1265,8 @@ function showResult(data) {
                 style="
                     width:100%;
                     margin-top:15px;
-                ">
+                "
+            >
 
                 <video
                     id="generatedVideo"
@@ -1082,11 +1279,13 @@ function showResult(data) {
                         border-radius:16px;
                         display:block;
                         background:#000;
-                    ">
+                    "
+                >
 
                     <source
-                        src="${videoURL}"
-                        type="video/mp4">
+                        src="${escapeHTML(videoURL)}"
+                        type="video/mp4"
+                    >
 
                     Your browser does not support
                     video playback.
@@ -1103,17 +1302,20 @@ function showResult(data) {
                     gap:10px;
                     flex-wrap:wrap;
                     margin-top:15px;
-                ">
+                "
+            >
 
                 <span>
-                    Duration: ${duration}s
+                    Duration: ${escapeHTML(duration)}s
                 </span>
+
 
                 <span>
                     Ratio: ${escapeHTML(
                         aspectRatio
                     )}
                 </span>
+
 
                 <span>
                     Status: Ready ✅
@@ -1129,13 +1331,14 @@ function showResult(data) {
                     gap:10px;
                     flex-wrap:wrap;
                     margin-top:15px;
-                ">
-
+                "
+            >
 
                 <button
                     type="button"
                     class="download-video-btn"
-                    onclick="downloadVideo('${videoURL}')">
+                    onclick="downloadVideo('${escapeHTML(videoURL)}')"
+                >
 
                     ⬇️ Download Video
 
@@ -1145,7 +1348,8 @@ function showResult(data) {
                 <button
                     type="button"
                     class="preview-video-btn"
-                    onclick="openVideoPreview('${videoURL}')">
+                    onclick="openVideoPreview('${escapeHTML(videoURL)}')"
+                >
 
                     ▶️ Preview
 
@@ -1165,6 +1369,18 @@ function showResult(data) {
 
 
     if (video) {
+
+        video.addEventListener(
+            "loadeddata",
+            () => {
+
+                console.log(
+                    "Video loaded successfully ✅"
+                );
+
+            }
+        );
+
 
         video.addEventListener(
             "error",
@@ -1188,9 +1404,11 @@ function showResult(data) {
 
     result.scrollIntoView({
 
-        behavior: "smooth",
+        behavior:
+            "smooth",
 
-        block: "center"
+        block:
+            "center"
 
     });
 
@@ -1208,6 +1426,7 @@ function downloadVideo(videoURL) {
         showToast(
             "Video URL not found ❌"
         );
+
 
         return;
 
@@ -1232,6 +1451,10 @@ function downloadVideo(videoURL) {
         "_blank";
 
 
+    link.rel =
+        "noopener";
+
+
     document.body.appendChild(
         link
     );
@@ -1251,6 +1474,18 @@ function downloadVideo(videoURL) {
 
 function openVideoPreview(videoURL) {
 
+    if (!videoURL) {
+
+        showToast(
+            "Video URL not found ❌"
+        );
+
+
+        return;
+
+    }
+
+
     const modal =
         document.getElementById(
             "videoPreviewModal"
@@ -1263,6 +1498,7 @@ function openVideoPreview(videoURL) {
             videoURL,
             "_blank"
         );
+
 
         return;
 
@@ -1282,6 +1518,7 @@ function openVideoPreview(videoURL) {
             "_blank"
         );
 
+
         return;
 
     }
@@ -1298,11 +1535,13 @@ function openVideoPreview(videoURL) {
                 max-width:900px;
                 border-radius:14px;
                 background:#000;
-            ">
+            "
+        >
 
             <source
-                src="${videoURL}"
-                type="video/mp4">
+                src="${escapeHTML(videoURL)}"
+                type="video/mp4"
+            >
 
         </video>
 
@@ -1453,6 +1692,10 @@ function showToast(message) {
             "99999";
 
 
+        container.style.maxWidth =
+            "90vw";
+
+
         document.body.appendChild(
             container
         );
@@ -1580,6 +1823,10 @@ function formatFileSize(bytes) {
 }
 
 
+/* =========================================
+   ESCAPE HTML
+========================================= */
+
 function escapeHTML(value) {
 
     return String(value)
@@ -1615,15 +1862,6 @@ function escapeHTML(value) {
 /* =========================================
    GLOBAL EXPORT
 ========================================= */
-
-/*
-   Because index.html uses:
-
-   onclick="generateVideo()"
-
-   we explicitly expose the function
-   to the browser.
-*/
 
 window.generateVideo =
     generateVideo;
