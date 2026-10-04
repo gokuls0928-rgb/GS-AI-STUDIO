@@ -8,8 +8,22 @@
    BACKEND URL
 ========================================= */
 
+/*
+   Relative by default so the browser talks to the
+   SAME origin that served the page. That keeps the
+   app working behind a dev preview proxy, on Render,
+   and on localhost without any CORS surprises.
+
+   To point at a remote backend instead, set
+   window.GS_API_URL before script.js loads, e.g.:
+
+       <script>window.GS_API_URL = "https://my-backend.onrender.com";</script>
+*/
+
 const API_URL =
-    "https://gs-ai-studio-backend.onrender.com";
+    (typeof window !== "undefined" && window.GS_API_URL)
+        ? String(window.GS_API_URL).replace(/\/+$/, "")
+        : "";
 
 
 let credits = 100;
@@ -47,6 +61,10 @@ document.addEventListener(
         setupPromptCounter();
 
         setupUpload();
+
+        setupModeControls();
+
+        setupSceneButtons();
 
         setupGenerateButton();
 
@@ -125,9 +143,24 @@ async function checkBackend() {
         );
 
 
-        showToast(
-            "GS AI backend connected ✅"
-        );
+        backendStatus = data;
+
+        applyBackendCapabilities(data);
+
+        if (data.status === "missing-key") {
+
+            showToast(
+                "Backend is up but MAGIC_HOUR_API_KEY is missing — the offline ffmpeg render still works 🎞️"
+            );
+
+        }
+        else {
+
+            showToast(
+                "GS AI backend connected ✅"
+            );
+
+        }
 
     }
     catch (error) {
@@ -143,6 +176,71 @@ async function checkBackend() {
         );
 
     }
+
+}
+
+
+function applyBackendCapabilities(data) {
+
+    const modelSelect =
+        document.getElementById(
+            "modelSelect"
+        );
+
+
+    if (
+        !modelSelect ||
+        !data.models
+    ) {
+        return;
+    }
+
+
+    const wanted = modelSelect.value;
+
+
+    const groups = [
+        ["Character reference models", data.models.referenceText],
+        ["Image to video models", data.models.imageToVideo],
+        ["Text to video models", data.models.text]
+    ];
+
+
+    modelSelect.innerHTML = "";
+
+
+    groups.forEach(
+        ([label, models]) => {
+
+            if (!models || !models.length) {
+                return;
+            }
+
+            const group =
+                document.createElement("optgroup");
+
+            group.label = label;
+
+            models.forEach(
+                (name) => {
+
+                    const option =
+                        document.createElement("option");
+
+                    option.value = name;
+                    option.textContent = name;
+                    group.appendChild(option);
+
+                }
+            );
+
+            modelSelect.appendChild(group);
+
+        }
+    );
+
+
+    modelSelect.value = wanted;
 
 }
 
@@ -637,7 +735,336 @@ function removeUploadedFile(event) {
     }
 
 
-    location.reload();
+    const uploadArea =
+        document.querySelector(
+            ".upload-area"
+        );
+
+
+    if (uploadArea) {
+
+        uploadArea.innerHTML = `
+
+            <div>
+
+                📁
+
+                <p>
+                    Click to upload
+                </p>
+
+                <small>
+                    Image or video
+                </small>
+
+            </div>
+
+        `;
+
+    }
+
+
+    updateUploadHint();
+
+}
+
+
+/* =========================================
+   GENERATION MODE CONTROLS
+========================================= */
+
+let backendStatus = null;
+
+
+function setupModeControls() {
+
+    const modeSelect =
+        document.getElementById(
+            "genMode"
+        );
+
+
+    if (!modeSelect) {
+        return;
+    }
+
+
+    modeSelect.addEventListener(
+        "change",
+        () => updateUploadHint()
+    );
+
+
+    updateUploadHint();
+
+}
+
+
+function currentMode() {
+
+    const modeSelect =
+        document.getElementById(
+            "genMode"
+        );
+
+
+    return modeSelect
+        ? modeSelect.value
+        : "text";
+
+}
+
+
+function updateUploadHint() {
+
+    const mode = currentMode();
+
+
+    const fileInput =
+        document.getElementById(
+            "fileInput"
+        );
+
+
+    if (fileInput) {
+
+        fileInput.accept =
+            mode === "imageToVideo"
+                ? "image/*,video/*"
+                : "image/*";
+
+    }
+
+
+    const hint =
+        document.querySelector(
+            ".upload-area small"
+        );
+
+
+    if (hint && !uploadedFile) {
+
+        hint.textContent =
+            mode === "text"
+                ? "Optional reference image"
+                : mode === "reference"
+                    ? "Character reference image (keeps her identical)"
+                    : "The still image to animate";
+
+    }
+
+}
+
+
+/* =========================================
+   SCENE PRESET + OFFLINE RENDER BUTTONS
+========================================= */
+
+function setupSceneButtons() {
+
+    const loadBtn =
+        document.getElementById(
+            "loadMagicalDoorBtn"
+        );
+
+
+    if (loadBtn) {
+
+        loadBtn.addEventListener(
+            "click",
+            loadMagicalDoorPreset
+        );
+
+    }
+
+
+    const renderBtn =
+        document.getElementById(
+            "renderLocalBtn"
+        );
+
+
+    if (renderBtn) {
+
+        renderBtn.addEventListener(
+            "click",
+            renderOfflineCinematic
+        );
+
+    }
+
+}
+
+
+async function loadMagicalDoorPreset() {
+
+    try {
+
+        const response =
+            await fetch(
+                `${API_URL}/api/presets`
+            );
+
+
+        const data =
+            await response.json();
+
+
+        const preset =
+            data.presets &&
+            data.presets["magical-door"];
+
+
+        if (!preset) {
+
+            throw new Error(
+                "Preset not found."
+            );
+
+        }
+
+
+        const promptInput =
+            document.getElementById(
+                "prompt"
+            );
+
+        const durationInput =
+            document.getElementById(
+                "duration"
+            );
+
+        const aspectInput =
+            document.getElementById(
+                "aspectRatio"
+            );
+
+        const resolutionInput =
+            document.getElementById(
+                "resolution"
+            );
+
+        const modelInput =
+            document.getElementById(
+                "modelSelect"
+            );
+
+        const modeInput =
+            document.getElementById(
+                "genMode"
+            );
+
+
+        if (promptInput) {
+            promptInput.value = preset.prompt;
+            promptInput.dispatchEvent(
+                new Event("input")
+            );
+        }
+
+        if (durationInput) durationInput.value = String(preset.duration);
+        if (aspectInput) aspectInput.value = preset.aspectRatio;
+        if (resolutionInput) resolutionInput.value = preset.resolution;
+        if (modelInput) modelInput.value = preset.model;
+        if (modeInput) {
+            modeInput.value = "reference";
+            updateUploadHint();
+        }
+
+
+        showToast(
+            "Magical Golden Door scene loaded ✨ upload her reference image, then generate!"
+        );
+
+    }
+    catch (error) {
+
+        console.error(error);
+
+        showToast(
+            error.message ||
+            "Could not load the scene preset ❌"
+        );
+
+    }
+
+}
+
+
+async function renderOfflineCinematic() {
+
+    const button =
+        document.getElementById(
+            "renderLocalBtn"
+        );
+
+
+    if (button) {
+        button.disabled = true;
+        button.dataset.oldText = button.innerHTML;
+        button.innerHTML = "Rendering... ⏳";
+    }
+
+
+    showLoading();
+
+
+    try {
+
+        const response =
+            await fetch(
+                `${API_URL}/api/render/local`,
+                {
+                    method: "POST"
+                }
+            );
+
+
+        const data =
+            await response.json();
+
+
+        if (!response.ok || !data.success) {
+
+            throw new Error(
+                data.message ||
+                "Offline render failed."
+            );
+
+        }
+
+
+        hideLoading();
+
+        showResult(data);
+
+        showToast(
+            "Offline cinematic render complete! 🎞️"
+        );
+
+    }
+    catch (error) {
+
+        console.error(error);
+
+        hideLoading();
+
+        showToast(
+            error.message ||
+            "Offline render failed ❌"
+        );
+
+    }
+    finally {
+
+        if (button) {
+            button.disabled = false;
+            button.innerHTML =
+                button.dataset.oldText ||
+                button.innerHTML;
+        }
+
+    }
 
 }
 
@@ -858,38 +1285,129 @@ async function generateVideo() {
            BACKEND REQUEST
         ----------------------------------------- */
 
+        /* -----------------------------------------
+           BACKEND REQUEST
+           mode-aware: text, character reference
+           or image-to-video
+        ----------------------------------------- */
+        const mode =
+            typeof currentMode === "function"
+                ? currentMode()
+                : "text";
+
+        const modelSelect =
+            document.getElementById(
+                "modelSelect"
+            );
+
+        const resolutionSelect =
+            document.getElementById(
+                "resolution"
+            );
+
+        const model =
+            modelSelect
+                ? modelSelect.value
+                : "default";
+
+        const resolution =
+            resolutionSelect
+                ? resolutionSelect.value
+                : "720p";
+
+        let endpoint =
+            `${API_URL}/api/generate`;
+
+        let fetchOptions;
+
+        if (
+            (mode === "reference" || mode === "imageToVideo") &&
+            !uploadedFile
+        ) {
+
+            showToast(
+                "This mode needs an uploaded image 📁"
+            );
+
+            hideLoading();
+
+            if (button) {
+                button.disabled = false;
+                button.innerHTML =
+                    button.dataset.oldText ||
+                    "🎬 Generate Video";
+            }
+
+            return;
+
+        }
+
+        if (mode === "imageToVideo" && uploadedFile) {
+
+            endpoint =
+                `${API_URL}/api/image-to-video`;
+
+            const form = new FormData();
+
+            form.append("image", uploadedFile);
+            form.append("prompt", prompt);
+            form.append("duration", duration);
+            form.append("model", model);
+            form.append("resolution", resolution);
+
+            fetchOptions = {
+                method: "POST",
+                body: form
+            };
+
+        }
+        else if (mode === "reference" && uploadedFile) {
+
+            const form = new FormData();
+
+            form.append("references", uploadedFile);
+            form.append("prompt", prompt);
+            form.append("duration", duration);
+            form.append("aspectRatio", aspectRatio);
+            form.append("model", model);
+            form.append("resolution", resolution);
+
+            fetchOptions = {
+                method: "POST",
+                body: form
+            };
+
+        }
+        else {
+
+            fetchOptions = {
+                method: "POST",
+                headers: {
+                    "Content-Type":
+                        "application/json"
+                },
+                body: JSON.stringify({
+                    prompt: prompt,
+                    duration: duration,
+                    aspectRatio: aspectRatio,
+                    model: model,
+                    resolution: resolution
+                })
+            };
+
+        }
+
+        console.log(
+            "Endpoint:",
+            endpoint,
+            "mode:",
+            mode
+        );
+
         const response =
             await fetch(
-                `${API_URL}/api/generate`,
-                {
-
-                    method:
-                        "POST",
-
-
-                    headers: {
-
-                        "Content-Type":
-                            "application/json"
-
-                    },
-
-
-                    body:
-                        JSON.stringify({
-
-                            prompt:
-                                prompt,
-
-                            duration:
-                                duration,
-
-                            aspectRatio:
-                                aspectRatio
-
-                        })
-
-                }
+                endpoint,
+                fetchOptions
             );
 
 

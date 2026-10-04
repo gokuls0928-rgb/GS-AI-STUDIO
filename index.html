@@ -748,6 +748,138 @@
 
 
 
+                <!-- GENERATION MODE -->
+
+                <label
+                    for="genMode">
+
+                    Generation Mode
+
+                </label>
+
+
+                <select
+                    id="genMode"
+                    name="genMode">
+
+                    <option value="text">
+                        Text to Video
+                    </option>
+
+                    <option value="reference">
+                        Text + Character Reference
+                    </option>
+
+                    <option value="imageToVideo">
+                        Image to Video (animate a still)
+                    </option>
+
+                </select>
+
+
+                <!-- MODEL -->
+
+                <label
+                    for="modelSelect">
+
+                    Video Model
+
+                </label>
+
+
+                <select
+                    id="modelSelect"
+                    name="modelSelect">
+
+                    <option value="seedance-2.5">
+                        seedance-2.5 (references)
+                    </option>
+
+                    <option value="kling-3.0">
+                        kling-3.0 (cinematic)
+                    </option>
+
+                    <option value="minimax-h3">
+                        minimax-h3 (reference + audio)
+                    </option>
+
+                    <option value="seedance-2.0">
+                        seedance-2.0
+                    </option>
+
+                    <option value="ltx-2.5">
+                        ltx-2.5 (fast)
+                    </option>
+
+                    <option value="default">
+                        default
+                    </option>
+
+                </select>
+
+
+                <!-- RESOLUTION -->
+
+                <label
+                    for="resolution">
+
+                    Resolution
+
+                </label>
+
+
+                <select
+                    id="resolution"
+                    name="resolution">
+
+                    <option value="480p">
+                        480p
+                    </option>
+
+                    <option value="720p">
+                        720p
+                    </option>
+
+                    <option value="1080p"
+                        selected>
+                        1080p
+                    </option>
+
+                </select>
+
+
+                <!-- SCENE PRESETS -->
+
+                <label>
+                    Scene Presets
+                </label>
+
+
+                <div
+                    class="scene-buttons">
+
+                    <button
+                        type="button"
+                        class="scene-btn"
+                        id="loadMagicalDoorBtn">
+
+                        ✨ Magical Golden Door (10s 9:16)
+
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="scene-btn"
+                        id="renderLocalBtn">
+
+                        🎞️ Render Offline Cinematic (ffmpeg)
+
+                    </button>
+
+                </div>
+
+
                 <!-- OPTIONAL UPLOAD -->
 
                 <label>

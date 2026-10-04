@@ -1,13 +1,21 @@
 {
   "name": "ai-video-studio",
-  "version": "1.0.0",
-  "description": "",
+  "version": "1.1.0",
+  "description": "GS AI Studio - text-to-video, character-reference video and image-to-video powered by Magic Hour, plus an offline ffmpeg cinematic renderer.",
   "main": "script.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node server.js",
+    "scene:render": "node magical-door-scene/build-video.js",
+    "scene:status": "node magical-door-scene/build-video.js --status"
   },
-  "keywords": [],
+  "keywords": [
+    "ai",
+    "video",
+    "magic-hour",
+    "image-to-video",
+    "cinematic"
+  ],
   "author": "",
   "license": "ISC",
   "type": "commonjs",
@@ -16,6 +24,7 @@
     "cors": "^2.8.6",
     "dotenv": "^17.4.2",
     "express": "^5.2.1",
-    "magic-hour": "^0.71.3"
+    "magic-hour": "^0.81.0",
+    "multer": "^2.4.0"
   }
 }

@@ -1,0 +1,24 @@
+node_modules/
+.env
+.env.local
+.env.*.local
+
+# Generated videos and uploads
+output/
+magical-door-scene/output/
+magical-door-scene/assets/cache/
+magical-door-scene/assets/keyframes/
+magical-door-scene/assets/reference/
+uploads/
+*.mp4
+*.mov
+*.webm
+
+# OS / editor noise
+.DS_Store
+Thumbs.db
+*.log
+
+# python
+__pycache__/
+*.pyc

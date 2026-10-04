@@ -753,6 +753,53 @@ select {
 }
 
 /* =========================================================
+   SCENE PRESET BUTTONS
+   ========================================================= */
+
+.scene-buttons {
+    display: flex;
+    flex-wrap: wrap;
+
+    gap: 10px;
+
+    margin-bottom: 10px;
+}
+
+.scene-btn {
+    flex: 1 1 200px;
+
+    padding: 12px 14px;
+
+    border: 1px solid var(--border);
+    border-radius: 10px;
+
+    background: var(--panel2);
+
+    color: var(--text);
+
+    font-size: 13px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.scene-btn:hover {
+    border-color: var(--purple);
+
+    color: var(--purple);
+
+    transform: translateY(-1px);
+}
+
+.scene-btn:disabled {
+    opacity: 0.6;
+
+    cursor: wait;
+}
+
+/* =========================================================
    UPLOAD PREVIEW
    ========================================================= */
 
